@@ -1,0 +1,24 @@
+name: Test IIT Selector Script
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Make script executable
+        run: chmod +x iit_selector.sh
+
+      - name: Run script with mock input (Marks: 245)
+        run: echo "245" | ./iit_selector.sh
+
+      - name: Run script with low score (Marks: 30)
+        run: echo "30" | ./iit_selector.sh
